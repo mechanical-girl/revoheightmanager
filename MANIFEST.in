@@ -1,0 +1,4 @@
+include README.md
+recursive-include octoprint_revoheight/templates *
+recursive-include octoprint_revoheight/translations *
+recursive-include octoprint_revoheight/static *
