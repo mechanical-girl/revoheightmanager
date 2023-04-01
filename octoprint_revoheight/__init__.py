@@ -11,6 +11,7 @@ from __future__ import absolute_import
 
 import octoprint.plugin
 import json
+import os
 
 class RevoheightPlugin(octoprint.plugin.StartupPlugin,
                        octoprint.plugin.SettingsPlugin,
@@ -70,7 +71,7 @@ class RevoheightPlugin(octoprint.plugin.StartupPlugin,
                 self.nozzles = json.loads(f.read())
             self._logger.info(f"Loaded nozzles from file {self.path}")
         except FileNotFoundError:
-            self._logger.info(f"Could not find nozzle file, creating now...")
+            self._logger.info("Could not find nozzle file, creating now...")
             nozzles = {
                 "0.25mm": 0.875,
                 "0.4mm": 0.950,
