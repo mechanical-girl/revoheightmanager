@@ -79,8 +79,17 @@ class RevoheightPlugin(octoprint.plugin.StartupPlugin,
                 "0.8mm": 0.950
             }
             with open(self.path, 'w') as f:
-                f.write(json.dumps({nozzles}))
-        
+                f.write(json.dumps(nozzles))
+        except json.decoder.JSONDecodeError:
+            self._logger.info("Nozzle file appears to be corrupted, recreating.")
+            nozzles = {
+                "0.25mm": 0.875,
+                "0.4mm": 0.950,
+                "0.6mm": 0.900,
+                "0.8mm": 0.950
+            }
+            with open(self.path, 'w') as f:
+                f.write(json.dumps(nozzles))
 
 
 # If you want your plugin to be registered within OctoPrint under a different name than what you defined in setup.py
